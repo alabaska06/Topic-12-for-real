@@ -6,7 +6,14 @@ namespace Topic_12_for_real
     {
         static void Main(string[] args)
         {
-            List<EventScore> eventScores = ReadEventScoresFromFile(@"results.txt");
+            List<EventScore> eventScores;
+                
+            eventScores = ReadEventScoresFromFile(@"results.txt");
+
+            foreach (EventScore eventScore in eventScores)
+            {
+                Console.WriteLine(eventScore);
+            }
 
             int choice;
             do
@@ -43,21 +50,28 @@ namespace Topic_12_for_real
             } while (choice != 0);
         }
 
-        static List<EventScore> ReadEventScoresFromFile(@"results.txt")
+        static List<EventScore> ReadEventScoresFromFile(string v)
         {
             List<EventScore> eventScores = new List<EventScore>();
+            string name, playerEvent;
+            List<double> scores;
 
-            using (StreamReader reader = new StreamReader("results.txt"))
+
+            using (StreamReader reader = new StreamReader(v))
             {
                 string line;
                 while ((line = reader.ReadLine()) != null)
                 {
-                    string[] parts = line.Split(',');
-                    string name = parts[0];
-                    string eventName = parts[1];
-                    List<double> scores = parts.Skip(2).Select(double.Parse).ToList();
+                    scores = new List<double>();
+                    name = line;
+                    playerEvent = reader.ReadLine();
+                    scores.Add(Convert.ToDouble(reader.ReadLine()));
+                    scores.Add(Convert.ToDouble(reader.ReadLine()));
+                    scores.Add(Convert.ToDouble(reader.ReadLine()));
+                    scores.Add(Convert.ToDouble(reader.ReadLine()));
+                    scores.Add(Convert.ToDouble(reader.ReadLine()));
 
-                    eventScores.Add(new EventScore(name, eventName, scores));
+                    eventScores.Add(new EventScore(name, playerEvent, scores));
                 }
             }
             return eventScores;
@@ -73,14 +87,14 @@ namespace Topic_12_for_real
 
         static void PrintHighestScores(List<EventScore> eventScores)
         {
-            EventScore highestScore = eventScores.OrderByDescending(e => e.GetTotalScore()).First();
+            EventScore highestScore = eventScores.OrderByDescending(e => e.GetTotalscore()).First();//THID
             Console.WriteLine("Highest Score:");
             Console.WriteLine(highestScore);
         }
 
         static void PrintLowestScore(List<EventScore> eventScores)
         {
-            EventScore lowestScore = eventScores.OrderBy(e => e.GetTotalScore()).First();
+            EventScore lowestScore = eventScores.OrderBy(e => e.GetTotalScore()).First();//THISD
             Console.WriteLine("Lowest Score:");
             Console.WriteLine(lowestScore);
         }

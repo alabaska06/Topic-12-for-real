@@ -19,25 +19,31 @@ namespace Topic_12_for_real
             Scores = scores;
         }
 
-        public double GetTotalScore()
+
+        
+      
+
+        public double Total
         {
-            return Scores.Sum();
+            get { return Scores.Sum(); }
         }
 
-        public double GetAverage()
+        
+        public double Average
         {
-            return Scores.Average();
+            get {  return Scores.Average(); }
         }
-
+        
         public override string ToString()
         {
-            return $"{Name} - {Event}: Total Score: {GetTotalScore()}, Average Score: {GetAverage()}";
+            return $"{Name} - {Event}: Total Score: {Total}, Average Score: {Average}";
         }
 
         public int CompareTo(EventScore other)
         {
-            return GetTotalScore().CompareTo(other.GetTotalScore());
+            return Total.CompareTo(other.Total);
         }
+        
     }
 }
 
