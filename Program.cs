@@ -18,23 +18,22 @@ namespace Topic_12_for_real
             int choice;
             do
             {
+               
                 Console.WriteLine("Menu:\n");
                 Console.WriteLine("1. Print Scores");
                 Console.WriteLine("2. Highest Score");
                 Console.WriteLine("3. Lowest Score");
                 Console.WriteLine("0. Exit");
-
+     
                 Console.WriteLine("\nEnter your choice:\n");
                 choice = int.Parse(Console.ReadLine());
 
                 switch (choice)
                 {
-                    case 1:
-                        Console.WriteLine("Scores:");
+                    case 1:                      
                         PrintScores(eventScores);
                         break;
                     case 2:
-                        Console.WriteLine("Highest Scores:");
                         PrintHighestScores(eventScores);
                         break;
                     case 3:
@@ -48,6 +47,7 @@ namespace Topic_12_for_real
                         break;
                 }
             } while (choice != 0);
+           
         }
 
         static List<EventScore> ReadEventScoresFromFile(string v)
@@ -87,14 +87,14 @@ namespace Topic_12_for_real
 
         static void PrintHighestScores(List<EventScore> eventScores)
         {
-            EventScore highestScore = eventScores.OrderByDescending(e => e.GetTotalscore()).First();//THID
+            EventScore highestScore = eventScores.OrderByDescending(e => e.Total).First();//THID
             Console.WriteLine("Highest Score:");
             Console.WriteLine(highestScore);
         }
 
         static void PrintLowestScore(List<EventScore> eventScores)
         {
-            EventScore lowestScore = eventScores.OrderBy(e => e.GetTotalScore()).First();//THISD
+            EventScore lowestScore = eventScores.OrderBy(e => e.Total).First();//THISD
             Console.WriteLine("Lowest Score:");
             Console.WriteLine(lowestScore);
         }

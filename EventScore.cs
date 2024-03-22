@@ -19,10 +19,6 @@ namespace Topic_12_for_real
             Scores = scores;
         }
 
-
-        
-      
-
         public double Total
         {
             get { return Scores.Sum(); }
@@ -36,7 +32,7 @@ namespace Topic_12_for_real
         
         public override string ToString()
         {
-            return $"{Name} - {Event}: Total Score: {Total}, Average Score: {Average}";
+            return $"{Name} - {Event}: Total Score: {Total}, Average Score: {Average}\n";
         }
 
         public int CompareTo(EventScore other)
